@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private InputField pieceOfPaper;
 
+    [SerializeField] private GameObject winCon;
+
     public void SetGranny(Granny granny)
     {
         this.granny = granny;
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
                         this.cam.transform.position.z);
 
         if (this.pieceOfPaper.isFocused) { return; }
+        if (this.winCon.activeSelf) { return; }
 
         this.currentDirection = Vector2.zero;
         if (Input.GetKey(KeyCode.W)) {
