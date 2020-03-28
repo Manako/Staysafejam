@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 174868314}
   - component: {fileID: 174868313}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: Piece of Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1320,6 +1320,7 @@ MonoBehaviour:
   carriedFish: 0
   meatCounter: {fileID: 1597823212}
   fishCounter: {fileID: 2139573466}
+  pieceOfPaper: {fileID: 174868313}
 --- !u!61 &965073547
 BoxCollider2D:
   m_ObjectHideFlags: 0

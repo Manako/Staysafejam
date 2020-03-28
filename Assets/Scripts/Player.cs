@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Text meatCounter;
     [SerializeField] private Text fishCounter;
 
+    [SerializeField] private InputField pieceOfPaper;
+
     public void SetGranny(Granny granny)
     {
         this.granny = granny;
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
             new Vector3(this.transform.position.x, 
                         this.transform.position.y, 
                         this.cam.transform.position.z);
+
+        if (this.pieceOfPaper.isFocused) { return; }
 
         this.currentDirection = Vector2.zero;
         if (Input.GetKey(KeyCode.W)) {
