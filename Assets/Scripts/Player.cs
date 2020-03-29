@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Camera cam;
     private Rigidbody2D rbody;
     private AudioSource audioSource;
+    private Animator animator;
 
     private Vector2 currentDirection;
     [SerializeField] private GameObject inventory;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         this.cam = Camera.main;
         this.rbody = this.GetComponent<Rigidbody2D>();
         this.audioSource = this.GetComponent<AudioSource>();
+        this.animator = this.GetComponent<Animator>();
     }
 
     private void Update()
@@ -67,6 +69,15 @@ public class Player : MonoBehaviour
         }
         this.currentDirection.Normalize();
         this.currentDirection *= this.speed;
+
+        if (this.currentDirection != Vector2.zero)
+        {
+            this.animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            this.animator.SetBool("IsWalking", false);
+        }
 
         if (Input.GetKeyDown(KeyCode.E)) {
             this.granny?.Interact(ref this.carriedMeat, ref this.carriedFish);

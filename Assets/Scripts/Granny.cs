@@ -10,6 +10,7 @@ public class Granny : MonoBehaviour
     [SerializeField] [Range(0, 5)] private int neededMeat;
     [SerializeField] [Range(0, 5)] private int neededFish;
 
+    [SerializeField] private AudioClip attentionClip;
     [SerializeField] private AudioClip requestClip;
     [SerializeField] private AudioClip successClip;
 
@@ -58,6 +59,9 @@ public class Granny : MonoBehaviour
         this.request.SetActive(true);
         this.alertSprite.SetActive(false);
 
+        this.audioSource.clip = this.requestClip;
+        this.audioSource.Play();
+
         this.requested = true;
     }
 
@@ -88,6 +92,8 @@ public class Granny : MonoBehaviour
         StopCoroutine("AnimateRequestReminder");
         this.request.transform.position = this.originalRequestPosition;
         StartCoroutine("AnimateRequestReminder");
+        this.audioSource.clip = this.requestClip;
+        this.audioSource.Play();
         return;
     }
 
@@ -115,7 +121,7 @@ public class Granny : MonoBehaviour
         if (!this.needsHelp) { return; }
 
         this.alertSprite.SetActive(true);
-        this.audioSource.clip = this.requestClip;
+        this.audioSource.clip = this.attentionClip;
         this.audioSource.Play();
 
         other.GetComponent<Player>().SetGranny(this);
