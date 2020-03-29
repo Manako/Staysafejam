@@ -26,11 +26,11 @@ public class Store : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<Player>().SetStore(this);
+        other.GetComponent<Player>().SetStore(this, this.type);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        other.GetComponent<Player>().SetStore(null);
+        other.GetComponent<Player>().SetStore(null, this.type);
     }
 }

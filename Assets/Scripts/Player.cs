@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
     private AudioSource audioSource;
     private Animator animator;
 
+    [SerializeField] private GameObject fishSuggestion;
+    [SerializeField] private GameObject meatSuggestion;
+    [SerializeField] private GameObject pharmSuggestion;
+    [SerializeField] private GameObject vegetableSuggestion;
+
     private Vector2 currentDirection;
     [SerializeField] private GameObject inventory;
     [SerializeField] private int carriedMeat;
@@ -35,9 +40,34 @@ public class Player : MonoBehaviour
         this.granny = granny;
     }
 
-    public void SetStore(Store store)
+    public void SetStore(Store store, ProductType type)
     {
         this.store = store;
+
+        if (store == null)
+        {
+            this.fishSuggestion.SetActive(false);
+            this.meatSuggestion.SetActive(false);
+            this.pharmSuggestion.SetActive(false);
+            this.vegetableSuggestion.SetActive(false);
+            return;
+        }
+
+        switch (type)
+        {
+            case ProductType.Fish:
+                this.fishSuggestion.SetActive(true);
+                break;
+            case ProductType.Meat:
+                this.meatSuggestion.SetActive(true);
+                break;
+            case ProductType.Pharm:
+                this.pharmSuggestion.SetActive(true);
+                break;
+            case ProductType.Vegetables:
+                this.vegetableSuggestion.SetActive(true);
+                break;
+        }
     }
 
     private void Start()
