@@ -66,7 +66,7 @@ public class Granny : MonoBehaviour
 
     private void SatisfyRequest(ref int meat, ref int fish, ref int pharm, ref int vegetables)
     {
-        if (meat < this.neededMeat || fish < this.neededFish || pharm < this.neededPharm || fish < this.neededVegetables)
+        if (meat < this.neededMeat || fish < this.neededFish || pharm < this.neededPharm || vegetables < this.neededVegetables)
         {
             this.RemindRequest();
             this.alertSprite.SetActive(false);
