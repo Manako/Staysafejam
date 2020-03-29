@@ -33,17 +33,19 @@ public class Granny : MonoBehaviour
 
     private Vector3 originalRequestPosition;
 
-    public void Interact(ref int meat, ref int fish, ref int pharm, ref int vegetables)
+    public int Interact(ref int meat, ref int fish, ref int pharm, ref int vegetables)
     {
         if (!this.requested)
         {
             this.Request();
-            return;
+            return 1;
         }
         else if (this.needsHelp)
         {
             this.SatisfyRequest(ref meat, ref fish, ref pharm, ref vegetables);
         }
+
+        return 0;
     }
 
     private void Request()

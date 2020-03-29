@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputField pieceOfPaper;
 
     [SerializeField] private GameObject winCon;
+    public int granniesHelped = 0;
 
     public void SetGranny(Granny granny)
     {
@@ -84,6 +86,10 @@ public class Player : MonoBehaviour
             new Vector3(this.transform.position.x, 
                         this.transform.position.y, 
                         this.cam.transform.position.z);
+        
+        if (Input.GetKey(KeyCode.Escape)) {
+            SceneManager.LoadScene("Level1");
+        }
 
         if (this.pieceOfPaper.isFocused) { return; }
         if (this.winCon.activeSelf) { return; }
@@ -114,7 +120,8 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
-            this.granny?.Interact(ref this.carriedMeat, ref this.carriedFish, ref this.carriedPharm, ref this.carriedVegetables);
+            if (this.granny != null)
+                this.granniesHelped += this.granny.Interact(ref this.carriedMeat, ref this.carriedFish, ref this.carriedPharm, ref this.carriedVegetables);
             if (this.store == null) goto CannotPurchase;
             if (this.totalItems >= 5)
             {

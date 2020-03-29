@@ -7,6 +7,8 @@ public class Timer : MonoBehaviour
     [SerializeField] private Text timerText;
 
     [SerializeField] private GameObject winCon;
+    [SerializeField] private Text finalText;
+    [SerializeField] private Player player;
 
     private void Update()
     {
@@ -17,6 +19,7 @@ public class Timer : MonoBehaviour
         {
             timerText.gameObject.SetActive(false);
             this.winCon.SetActive(true);
+            this.finalText.text = "You helped " + player.granniesHelped + " people and got them food for their next meals, and supplies to resist the times!";
         }
     }
 }

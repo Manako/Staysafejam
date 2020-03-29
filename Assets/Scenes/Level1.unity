@@ -1546,8 +1546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.3, y: 100.2}
-  m_SizeDelta: {x: 631.1, y: 101.7}
+  m_AnchoredPosition: {x: -0.3, y: 32.6}
+  m_SizeDelta: {x: 631.1, y: 236.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950125524
 MonoBehaviour:
@@ -1582,7 +1582,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You helped X people getting food for their next meals!
+  m_Text: You helped X people and got them food for their next meals, and supplies
+    to resist the times!
 --- !u!222 &950125525
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1727,6 +1728,7 @@ MonoBehaviour:
   vegetableCounter: {fileID: 773784569}
   pieceOfPaper: {fileID: 174868313}
   winCon: {fileID: 2074998582}
+  granniesHelped: 0
 --- !u!61 &965073547
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4159,6 +4161,8 @@ MonoBehaviour:
   gameTime: 300
   timerText: {fileID: 604425854}
   winCon: {fileID: 2074998582}
+  finalText: {fileID: 950125524}
+  player: {fileID: 965073546}
 --- !u!4 &1886435843
 Transform:
   m_ObjectHideFlags: 0
