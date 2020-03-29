@@ -2,7 +2,9 @@
 
 public enum ProductType {
     Meat,
-    Fish
+    Fish,
+    Pharm,
+    Vegetables
 }
 
 public class Store : MonoBehaviour

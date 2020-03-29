@@ -15,12 +15,16 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject inventory;
     [SerializeField] private int carriedMeat;
     [SerializeField] private int carriedFish;
+    [SerializeField] private int carriedPharm;
+    [SerializeField] private int carriedVegetables;
     private int totalItems;
     private Granny granny;
     private Store store;
     
     [SerializeField] private Text meatCounter;
     [SerializeField] private Text fishCounter;
+    [SerializeField] private Text pharmCounter;
+    [SerializeField] private Text vegetableCounter;
 
     [SerializeField] private InputField pieceOfPaper;
 
@@ -80,7 +84,7 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
-            this.granny?.Interact(ref this.carriedMeat, ref this.carriedFish);
+            this.granny?.Interact(ref this.carriedMeat, ref this.carriedFish, ref this.carriedPharm, ref this.carriedVegetables);
             if (this.store == null) goto CannotPurchase;
             if (this.totalItems >= 5)
             {
@@ -96,6 +100,12 @@ public class Player : MonoBehaviour
                 case ProductType.Fish:
                     this.carriedFish++;
                     break;
+                case ProductType.Pharm:
+                    this.carriedPharm++;
+                    break;
+                case ProductType.Vegetables:
+                    this.carriedVegetables++;
+                    break;
                 default:
                     Debug.LogWarning("Store carries product type that player does not support.");
                     break;
@@ -108,6 +118,8 @@ public class Player : MonoBehaviour
         this.totalItems = this.carriedMeat + this.carriedFish;
         this.meatCounter.text = this.carriedMeat.ToString();
         this.fishCounter.text = this.carriedFish.ToString();
+        this.pharmCounter.text = this.carriedPharm.ToString();
+        this.vegetableCounter.text = this.carriedVegetables.ToString();
     }
 
     IEnumerator DisplayInventory()

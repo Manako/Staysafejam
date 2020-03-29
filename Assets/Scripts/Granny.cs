@@ -9,6 +9,8 @@ public class Granny : MonoBehaviour
 
     [SerializeField] [Range(0, 5)] private int neededMeat;
     [SerializeField] [Range(0, 5)] private int neededFish;
+    [SerializeField] [Range(0, 5)] private int neededPharm;
+    [SerializeField] [Range(0, 5)] private int neededVegetables;
 
     [SerializeField] private AudioClip attentionClip;
     [SerializeField] private AudioClip requestClip;
@@ -20,14 +22,18 @@ public class Granny : MonoBehaviour
 
     [SerializeField] private Transform meatSprite;
     [SerializeField] private Transform fishSprite;
+    [SerializeField] private Transform pharmSprite;
+    [SerializeField] private Transform vegetableSprite;
     [SerializeField] private Text meatCounter;
     [SerializeField] private Text fishCounter;
+    [SerializeField] private Text pharmCounter;
+    [SerializeField] private Text vegetableCounter;
 
     private AudioSource audioSource;
 
     private Vector3 originalRequestPosition;
 
-    public void Interact(ref int meat, ref int fish)
+    public void Interact(ref int meat, ref int fish, ref int pharm, ref int vegetables)
     {
         if (!this.requested)
         {
@@ -36,26 +42,17 @@ public class Granny : MonoBehaviour
         }
         else if (this.needsHelp)
         {
-            this.SatisfyRequest(ref meat, ref fish);
+            this.SatisfyRequest(ref meat, ref fish, ref pharm, ref vegetables);
         }
     }
 
     private void Request()
     {
-        int numberOfCategories = 0;
-        if (neededMeat > 0) { numberOfCategories++; }
-        if (neededFish > 0) { numberOfCategories++; }
-        float spaceBetweenCategories = 6.0f / ((numberOfCategories * 2) + 1);
-        float spaceBetweenCategoryText = 3600.0f / ((numberOfCategories * 2) + 1);
-
         meatCounter.text = this.neededMeat.ToString();
         fishCounter.text = this.neededFish.ToString();
-        
-        meatSprite.localPosition = new Vector3((spaceBetweenCategories) - 3.0f, 0.0f, meatSprite.localPosition.z);
-        meatCounter.transform.localPosition = new Vector3((2 * spaceBetweenCategoryText) - 1800.0f - 200.0f, 0.0f, meatCounter.transform.localPosition.z);
-        fishSprite.localPosition = new Vector3((3 * spaceBetweenCategories) - 3.0f, 0.0f, fishSprite.localPosition.z);
-        fishCounter.transform.localPosition = new Vector3((4 * spaceBetweenCategoryText) - 1800.0f - 200.0f, 0.0f, fishCounter.transform.localPosition.z);
-
+        pharmCounter.text = this.neededPharm.ToString();
+        vegetableCounter.text = this.neededVegetables.ToString();
+  
         this.request.SetActive(true);
         this.alertSprite.SetActive(false);
 
@@ -65,9 +62,9 @@ public class Granny : MonoBehaviour
         this.requested = true;
     }
 
-    private void SatisfyRequest(ref int meat, ref int fish)
+    private void SatisfyRequest(ref int meat, ref int fish, ref int pharm, ref int vegetables)
     {
-        if (meat < this.neededMeat || fish < this.neededFish)
+        if (meat < this.neededMeat || fish < this.neededFish || pharm < this.neededPharm || fish < this.neededVegetables)
         {
             this.RemindRequest();
             this.alertSprite.SetActive(false);
@@ -76,6 +73,8 @@ public class Granny : MonoBehaviour
 
         meat -= this.neededMeat;
         fish -= this.neededFish;
+        pharm -= this.neededPharm;
+        vegetables -= this.neededVegetables;
 
         this.audioSource.clip = this.successClip;
         this.audioSource.Play();
