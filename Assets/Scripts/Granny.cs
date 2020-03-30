@@ -38,14 +38,14 @@ public class Granny : MonoBehaviour
         if (!this.requested)
         {
             this.Request();
-            return 1;
         }
         else if (this.needsHelp)
         {
-            this.SatisfyRequest(ref meat, ref fish, ref pharm, ref vegetables);
+            return this.SatisfyRequest(ref meat, ref fish, ref pharm, ref vegetables);
         }
 
         return 0;
+
     }
 
     private void Request()
@@ -64,13 +64,13 @@ public class Granny : MonoBehaviour
         this.requested = true;
     }
 
-    private void SatisfyRequest(ref int meat, ref int fish, ref int pharm, ref int vegetables)
+    private int SatisfyRequest(ref int meat, ref int fish, ref int pharm, ref int vegetables)
     {
         if (meat < this.neededMeat || fish < this.neededFish || pharm < this.neededPharm || vegetables < this.neededVegetables)
         {
             this.RemindRequest();
             this.alertSprite.SetActive(false);
-            return;
+            return 0;
         }
 
         meat -= this.neededMeat;
@@ -85,6 +85,8 @@ public class Granny : MonoBehaviour
         this.request.SetActive(false);
         this.success.SetActive(true);
         this.needsHelp = false;
+
+        return 1;
     }
 
     private void RemindRequest()

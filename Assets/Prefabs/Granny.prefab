@@ -493,7 +493,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6dcdb1b459b1d964ca3bcf975bc74f6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 4132501116176060649}
   m_Layer: 0
   m_Name: Granny
-  m_TagString: Untagged
+  m_TagString: Grannies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -660,7 +660,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4fda9e8341f050446b5313dd7c72a4e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -690,7 +690,7 @@ MonoBehaviour:
   neededFish: 1
   neededPharm: 1
   neededVegetables: 1
-  attentionClip: {fileID: 8300000, guid: 5ae8e49483394f843b370282fe643747, type: 3}
+  attentionClip: {fileID: 8300000, guid: 20f8366c2a4d5454386f6a60fb0f63f5, type: 3}
   requestClip: {fileID: 8300000, guid: d4c3febecdc447e46be58814e33ff152, type: 3}
   successClip: {fileID: 8300000, guid: 0cacdeaa6b8e4974da3508683d512601, type: 3}
   alertSprite: {fileID: 4132501116037926460}

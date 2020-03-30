@@ -33,9 +33,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Text vegetableCounter;
 
     [SerializeField] private InputField pieceOfPaper;
-
+    [SerializeField] private Text timerText;
     [SerializeField] private GameObject winCon;
+    [SerializeField] private Text finalText;
     public int granniesHelped = 0;
+    public int totalGrannies = 1000;
 
     public void SetGranny(Granny granny)
     {
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
         this.rbody = this.GetComponent<Rigidbody2D>();
         this.audioSource = this.GetComponent<AudioSource>();
         this.animator = this.GetComponent<Animator>();
+        this.totalGrannies = GameObject.FindGameObjectsWithTag("Grannies").Length;
     }
 
     private void Update()
@@ -152,11 +155,17 @@ public class Player : MonoBehaviour
             StartCoroutine("DisplayInventory");
         }
         CannotPurchase:;
-        this.totalItems = this.carriedMeat + this.carriedFish;
+        this.totalItems = this.carriedMeat + this.carriedFish + this.carriedPharm + this.carriedVegetables;
         this.meatCounter.text = this.carriedMeat.ToString();
         this.fishCounter.text = this.carriedFish.ToString();
         this.pharmCounter.text = this.carriedPharm.ToString();
         this.vegetableCounter.text = this.carriedVegetables.ToString();
+
+        if(this.granniesHelped >= this.totalGrannies) {
+            timerText.gameObject.SetActive(false);
+            this.winCon.SetActive(true);
+            this.finalText.text = "You helped " + this.granniesHelped + " people and got them food for their next meals, and supplies to resist the times!";
+        }
     }
 
     IEnumerator DisplayInventory()
